@@ -1,0 +1,51 @@
+[project]
+name = "lamba"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "akd3v", email = "haritonov.aka@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pybit (>=5.9.0,<6.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "pydantic (>=2.10.6,<3.0.0)",
+    "pydantic-settings (>=2.8.1,<3.0.0)",
+    "technic (>=0.0.3,<0.0.4)",
+    "redis[hiredis] (>=5.2.1,<6.0.0)",
+    "colorlog (>=6.9.0,<7.0.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "celery (>=5.4.0,<6.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.9"
+
+[tool.ruff]
+fix = false
+line-length = 120
+
+[tool.ruff.lint]
+exclude = [".git", ]
+ignore = ["PT009", "S101", "A003", "D100", "D104", "D105", "D106", "D107", "D203", "D205", "D212", "D4", ]
+select = [
+    "PT", "E", "F", "UP", "B", "SIM", "I", "A", "COM", "C4", "G", "T20", "PT", "Q", "RET", "SIM", "W", "D", "BLE",
+    "DJ", "RSE", "RUF100",
+]
+extend-fixable = ["I001", "I002", "COM812", "Q000", "D210"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single"
