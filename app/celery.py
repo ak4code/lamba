@@ -1,10 +1,11 @@
+import os
+
 from celery import Celery
 from celery.schedules import crontab
 
 app = Celery(
     'lamba',
-    broker='redis://localhost:6379/1',
-    backend='redis://localhost:6379/2',
+    broker=os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/1'),
     include=['app.tasks'],
 )
 
