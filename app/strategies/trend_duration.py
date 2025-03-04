@@ -128,7 +128,7 @@ def strategy(*, redis_client: Redis):
     ohlc = pd.DataFrame(klines.result.list)
     ohlc = ohlc[::-1].reset_index(drop=True)
 
-    close = ohlc[4].iloc[-1]
+    close = float(ohlc[4].iloc[-1])
     logger.info(f'Цена закрытия: {close}')
 
     ema50, ema200 = get_ema_values(ohlc=ohlc)
