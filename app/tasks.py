@@ -1,3 +1,5 @@
+import os
+
 from celery import shared_task
 
 from app.utils.logger import get_logger
@@ -15,7 +17,7 @@ def execute_strategy_task():
 
         from app.strategies import trend_duration
 
-        pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+        pool = redis.ConnectionPool.from_url(os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/1'))
         r_con = redis.Redis(connection_pool=pool)
         trend_duration.strategy(redis_client=r_con)
     except Exception as error:

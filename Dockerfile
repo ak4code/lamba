@@ -1,4 +1,4 @@
-FROM python:3.11.11-slim as builder
+FROM python:3.11.11-slim AS builder
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -22,7 +22,7 @@ COPY poetry.lock pyproject.toml ./
 
 RUN poetry install --no-root --no-ansi
 
-FROM python:3.11.11-slim as worker
+FROM python:3.11.11-slim AS worker
 
 COPY --from=builder $POETRY_HOME $POETRY_HOME
 COPY --from=builder $VIRTUAL_ENV $VIRTUAL_ENV
