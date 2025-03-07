@@ -172,9 +172,6 @@ def strategy(*, redis_client: Redis):
         watch = BUY
         redis_client.set(WATCH_KEY, watch)
 
-    if watch is None:
-        return
-
     if watch == BUY and trend == BULL or watch == SELL and trend == BEAR:
         redis_client.delete(WATCH_KEY)
         return
