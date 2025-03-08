@@ -39,7 +39,7 @@ def get_trailing_price(*, side: str, entry_price: float) -> float:
 
 def entry_position(*, price: float, side: str, position: Position | None = None, redis_client: Redis):
     """Вход в позиции"""
-    qty = round(settings.bid / price, 1)
+    qty = str(round(settings.bid / price, 1))
     pyramiding = redis_client.llen(POSITIONS_KEY)
     if position is None:
         logger.info(f'Новая {side}: {settings.symbol} x {qty} по {price}$')
