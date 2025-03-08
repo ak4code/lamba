@@ -31,4 +31,4 @@ WORKDIR /lamba
 
 COPY . .
 
-CMD ["celery", "-A", "app", "worker", "-B", "--loglevel=info"]
+CMD ["celery", "-A", "app", "worker", "-B", "--loglevel=info", "--pidfile=/var/run/celery/beat.pid"]
